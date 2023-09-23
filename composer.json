@@ -1,0 +1,40 @@
+{
+    "name": "wastukancana/nim",
+    "type": "library",
+    "description": "STT Wastukancana Student ID Parser",
+    "version": "0.0.1",
+    "homepage": "https://github.com/sooluh/waska-nim",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Abu Masyail",
+            "email": "suluhs@aol.com",
+            "homepage": "https://suluh.my.id",
+            "role": "Maintainer"
+        }
+    ],
+    "support": {
+        "source": "http://github.com/sooluh/waska-nim",
+        "docs": "https://github.com/sooluh/waska-nim/blob/master/README.md",
+        "issues": "https://github.com/sooluh/waska-nim/issues"
+    },
+    "scripts": {
+        "psr2check": [
+            "@php vendor/bin/phpcs --standard=PSR2 --ignore=vendor/*,Views/* ."
+        ],
+        "psr2autofix": [
+            "@php vendor/bin/phpcbf --standard=PSR2 --ignore=vendor/*,Views/* ."
+        ]
+    },
+    "autoload": {
+        "psr-4": {
+            "Wastukancana\\": "src/"
+        }
+    },
+    "require": {
+        "php": ">=7.4"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.7"
+    }
+}

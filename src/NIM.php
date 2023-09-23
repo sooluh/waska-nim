@@ -5,12 +5,15 @@ namespace Wastukancana;
 class NIM
 {
     private string $nim;
+    private PDDikti $pddikti;
 
     public function __construct($nim)
     {
         $this->nim = trim($nim);
 
         $this->isValid();
+
+        $this->pddikti = new PDDikti($nim);
     }
 
     private function isValid()
@@ -80,6 +83,7 @@ class NIM
     {
         $student = new Student;
         $student->nim = $this->getNIM();
+        $student->name = $this->pddikti->getName();
         $student->admissionYear = $this->getAdmissionYear();
         $student->study = $this->getStudy();
         $student->firstSemester = $this->getFirstSemester();

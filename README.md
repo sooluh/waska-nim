@@ -9,9 +9,9 @@ Sekolah Tinggi Teknologi Student ID (NIM) Parser.
 
 ## Requirements
 
-- PHP >= 7.4
-- Composer
-- curl
+- PHP `>= 7.4`
+- Composer v2
+- cURL `>= 7.19.4`
 
 ## Installation
 
@@ -41,7 +41,7 @@ try {
 
 ## To-Do
 
-- [ ] Integration with PDDikti
+- [x] Integration with PDDikti
 
 ## License
 

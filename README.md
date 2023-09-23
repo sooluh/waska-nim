@@ -1,9 +1,9 @@
 # NIM Parser
 
-[![Latest Stable Version](http://poser.pugx.org/sooluh/waska-nim/v)](https://packagist.org/packages/sooluh/waska-nim)
-[![Total Downloads](http://poser.pugx.org/sooluh/waska-nim/downloads)](https://packagist.org/packages/sooluh/waska-nim)
-[![Latest Unstable Version](http://poser.pugx.org/sooluh/waska-nim/v/unstable)](https://packagist.org/packages/sooluh/waska-nim)
-[![License](http://poser.pugx.org/sooluh/waska-nim/license)](https://packagist.org/packages/sooluh/waska-nim)
+[![Latest Stable Version](http://poser.pugx.org/wastukancana/nim/v)](https://packagist.org/packages/wastukancana/nim)
+[![Total Downloads](http://poser.pugx.org/wastukancana/nim/downloads)](https://packagist.org/packages/wastukancana/nim)
+[![Latest Unstable Version](http://poser.pugx.org/wastukancana/nim/v/unstable)](https://packagist.org/packages/wastukancana/nim)
+[![License](http://poser.pugx.org/wastukancana/nim/license)](https://packagist.org/packages/wastukancana/nim)
 
 Sekolah Tinggi Teknologi Student ID (NIM) Parser.
 
@@ -33,7 +33,7 @@ require __DIR__ . '/vendor/autoload.php';
 try {
     $nim = new NIM('211351143');
 
-    var_dump($nim->isValidAdmissionYear());
+    var_dump($nim->dump());
 } catch (\Exception $e) {
     echo $e->getMessage();
 }

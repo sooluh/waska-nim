@@ -1,8 +1,8 @@
 {
     "name": "wastukancana/nim",
     "type": "library",
-    "description": "STT Wastukancana Student ID Parser",
-    "version": "0.0.2",
+    "description": "STT Wastukancana Student ID (NIM) Parser",
+    "version": "0.0.3",
     "homepage": "https://github.com/sooluh/waska-nim",
     "license": "MIT",
     "authors": [

@@ -20,10 +20,10 @@
     },
     "scripts": {
         "psr2check": [
-            "@php vendor/bin/phpcs --standard=PSR2 --ignore=vendor/*,Views/* ."
+            "@php vendor/bin/phpcs --standard=PSR2 --ignore=vendor/* ."
         ],
         "psr2autofix": [
-            "@php vendor/bin/phpcbf --standard=PSR2 --ignore=vendor/*,Views/* ."
+            "@php vendor/bin/phpcbf --standard=PSR2 --ignore=vendor/* ."
         ]
     },
     "autoload": {

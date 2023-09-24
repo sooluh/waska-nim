@@ -46,7 +46,7 @@ class NIM
     public function isValidStudy()
     {
         $study = substr($this->nim, 2, 3);
-        return in_array($study, ['113', '115', '125', '133', '135']);
+        return in_array($study, ['113', '115', '123', '125', '133', '135']);
     }
 
     public function getStudy()
@@ -55,12 +55,28 @@ class NIM
         $studies = [
             '113' => 'Teknik Tekstil',
             '115' => 'Teknik Industri',
+            '123' => 'Teknik Mesin',
             '125' => 'Teknik Mesin',
             '133' => 'Manajemen Industri',
             '135' => 'Teknik Informatika',
         ];
 
         return $studies[$study] ?? null;
+    }
+
+    public function getEducationLevel()
+    {
+        $study = substr($this->nim, 2, 3);
+        $levels = [
+            '113' => 'S1',
+            '115' => 'S1',
+            '123' => 'D3',
+            '125' => 'S1',
+            '133' => 'D3',
+            '135' => 'S1',
+        ];
+
+        return $levels[$study] ?? null;
     }
 
     public function isValidFirstSemester()
@@ -86,6 +102,7 @@ class NIM
         $student->name = $this->pddikti->getName();
         $student->admissionYear = $this->getAdmissionYear();
         $student->study = $this->getStudy();
+        $student->educationLevel = $this->getEducationLevel();
         $student->firstSemester = $this->getFirstSemester();
         $student->sequenceNumber = $this->getSequenceNumber();
 

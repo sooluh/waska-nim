@@ -25,7 +25,7 @@ class PDDikti
         $studies = [
             '113' => '36AD4C43-3391-4665-B43E-18AF50755248', // Teknik Tekstil (S1)
             '115' => '771CDA74-824A-4208-8DD0-5746DD95D020', // Teknik Industri (S1)
-            // '125' => 'E18F7F44-DF9A-4F0E-9393-724A2D350717', // Teknik Mesin (D3)
+            '123' => 'E18F7F44-DF9A-4F0E-9393-724A2D350717', // Teknik Mesin (D3)
             '125' => '55DFA1F3-C11E-447C-8A6D-B8A4343C8746', // Teknik Mesin (S1)
             '133' => '4C991E25-08AD-4E8A-B995-763B9247BAC8', // Manajemen Industri (D3)
             '135' => '93DFDCD6-CC63-4FF2-BC40-EF049BD9C35A', // Teknik Informatika (S1)

@@ -1,6 +1,6 @@
 # Waska NIM
 
-[![Latest Stable Version](http://poser.pugx.org/wastukancana/nim/v)](https://packagist.org/packages/wastukancana/nim)
+[![Version](http://poser.pugx.org/wastukancana/nim/version)](https://packagist.org/packages/wastukancana/nim)
 [![Total Downloads](http://poser.pugx.org/wastukancana/nim/downloads)](https://packagist.org/packages/wastukancana/nim)
 [![Latest Unstable Version](http://poser.pugx.org/wastukancana/nim/v/unstable)](https://packagist.org/packages/wastukancana/nim)
 [![License](http://poser.pugx.org/wastukancana/nim/license)](https://packagist.org/packages/wastukancana/nim)

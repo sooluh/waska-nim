@@ -16,6 +16,7 @@ jobs:
       - uses: shivammathur/setup-php@v2
         with:
           php-version: "7.4"
+          coverage: xdebug
       - run: composer self-update && composer install && composer dump-autoload
       - run: vendor/bin/phpunit --coverage-clover coverage.xml tests
       - uses: codecov/codecov-action@v3

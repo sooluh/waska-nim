@@ -7,7 +7,7 @@ final class NimTest extends TestCase
 {
     const NIM_TEST = '211351143';
 
-    /** @covers Parser::getNIM */
+    /** @covers \Wastukancana\Parser::getNIM */
     public function testCanGetNim()
     {
         $parser = new Nim(self::NIM_TEST);
@@ -16,7 +16,7 @@ final class NimTest extends TestCase
         $this->assertEquals(self::NIM_TEST, $nim);
     }
 
-    /** @covers Nim::getName */
+    /** @covers \Wastukancana\Nim::getName */
     public function testCanGetName()
     {
         $parser = new Nim(self::NIM_TEST);
@@ -25,7 +25,7 @@ final class NimTest extends TestCase
         $this->assertEquals('SULUH SULISTIAWAN', $name);
     }
 
-    /** @covers Parser::getFirstSemester */
+    /** @covers \Wastukancana\Parser::getFirstSemester */
     public function testCanGetFirstSemester()
     {
         $parser = new Nim(self::NIM_TEST);
@@ -34,7 +34,7 @@ final class NimTest extends TestCase
         $this->assertEquals(1, $semester);
     }
 
-    /** @covers Parser::getSequenceNumber */
+    /** @covers \Wastukancana\Parser::getSequenceNumber */
     public function testCanGetSequenceNumber()
     {
         $parser = new Nim(self::NIM_TEST);
@@ -43,7 +43,7 @@ final class NimTest extends TestCase
         $this->assertEquals(143, $sequence);
     }
 
-    /** @covers Nim::isValidAdmissionYear */
+    /** @covers \Wastukancana\Nim::isValidAdmissionYear */
     public function testIsValidAdmissionYear()
     {
         $parser = new Nim(self::NIM_TEST);
@@ -52,7 +52,7 @@ final class NimTest extends TestCase
         $this->assertTrue($valid);
     }
 
-    /** @covers Nim::getAdmissionYear */
+    /** @covers \Wastukancana\Nim::getAdmissionYear */
     public function testCanGetAdmissionYear()
     {
         $parser = new Nim(self::NIM_TEST);
@@ -61,7 +61,7 @@ final class NimTest extends TestCase
         $this->assertEquals(2021, $year);
     }
 
-    /** @covers Nim::isValidStudy */
+    /** @covers \Wastukancana\Nim::isValidStudy */
     public function testIsValidStudy()
     {
         $parser = new Nim(self::NIM_TEST);
@@ -70,7 +70,7 @@ final class NimTest extends TestCase
         $this->assertTrue($valid);
     }
 
-    /** @covers Nim::getStudy */
+    /** @covers \Wastukancana\Nim::getStudy */
     public function testCanGetStudy()
     {
         $parser = new Nim(self::NIM_TEST);
@@ -79,7 +79,7 @@ final class NimTest extends TestCase
         $this->assertEquals('Teknik Informatika', $study);
     }
 
-    /** @covers Nim::getEducationLevel */
+    /** @covers \Wastukancana\Nim::getEducationLevel */
     public function testCanGetEducationLevel()
     {
         $parser = new Nim(self::NIM_TEST);
@@ -88,7 +88,7 @@ final class NimTest extends TestCase
         $this->assertEquals('S1', $level);
     }
 
-    /** @covers Nim::isValid */
+    /** @covers \Wastukancana\Nim::isValid */
     public function testNimWithInvalidLengthThrowsException()
     {
         $this->expectException(\Exception::class);
@@ -97,7 +97,7 @@ final class NimTest extends TestCase
         $parser->dump();
     }
 
-    /** @covers Nim::isValid */
+    /** @covers \Wastukancana\Nim::isValid */
     public function testNimWithNonNumericCharactersThrowsException()
     {
         $this->expectException(\Exception::class);
@@ -106,7 +106,7 @@ final class NimTest extends TestCase
         $parser->dump();
     }
 
-    /** @covers Nim::isValid */
+    /** @covers \Wastukancana\Nim::isValid */
     public function testInvalidAdmissionYearThrowsException()
     {
         $this->expectException(\Exception::class);
@@ -115,7 +115,7 @@ final class NimTest extends TestCase
         $parser->dump();
     }
 
-    /** @covers Nim::isValid */
+    /** @covers \Wastukancana\Nim::isValid */
     public function testNonExistentStudyThrowsException()
     {
         $this->expectException(\Exception::class);

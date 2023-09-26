@@ -1,9 +1,10 @@
 # Waska NIM
 
-[![Version](http://poser.pugx.org/wastukancana/nim/version)](https://packagist.org/packages/wastukancana/nim)
-[![Total Downloads](http://poser.pugx.org/wastukancana/nim/downloads)](https://packagist.org/packages/wastukancana/nim)
-[![Latest Unstable Version](http://poser.pugx.org/wastukancana/nim/v/unstable)](https://packagist.org/packages/wastukancana/nim)
-[![License](http://poser.pugx.org/wastukancana/nim/license)](https://packagist.org/packages/wastukancana/nim)
+[![version][packagist-version-src]][packagist-version-href]
+[![total downloads][download-src]][download-href]
+[![latest unstable version][unstable-version-src]][unstable-version-href]
+[![codecov][codecov-src]][codecov-href]
+[![license][license-src]][license-href]
 
 Sekolah Tinggi Teknologi Wastukancana Student ID (NIM) Parser.
 
@@ -42,3 +43,16 @@ try {
 ## License
 
 This project is licensed under [MIT License](./LICENSE).
+
+<!-- Badges -->
+
+[packagist-version-src]: http://poser.pugx.org/wastukancana/nim/version
+[packagist-version-href]: https://packagist.org/packages/wastukancana/nim
+[download-src]: http://poser.pugx.org/wastukancana/nim/downloads
+[download-href]: https://packagist.org/packages/wastukancana/nim
+[unstable-version-src]: http://poser.pugx.org/wastukancana/nim/v/unstable
+[unstable-version-href]: https://packagist.org/packages/wastukancana/nim
+[codecov-src]: https://img.shields.io/codecov/c/gh/sooluh/waska-nim/main?style=flat
+[codecov-href]: https://codecov.io/gh/sooluh/bloks-parser
+[license-src]: http://poser.pugx.org/wastukancana/nim/license
+[license-href]: https://packagist.org/packages/wastukancana/nim

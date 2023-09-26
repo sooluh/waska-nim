@@ -10,7 +10,7 @@ class Nim extends Parser
     {
         parent::__construct($nim);
         $this->isValid();
-        $this->pddikti = new PDDikti($this->nim, $this->studies[$this->getStudyCode()]['code']);
+        $this->pddikti = new PDDikti($this->nim);
     }
 
     private function isValid()

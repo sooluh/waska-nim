@@ -14,12 +14,20 @@ class PDDikti
     // STT Wastukancana PT ID
     private string $pt = '2CE2EA61-3574-43CA-81D5-E8EF77B6DDF7';
 
-    public function __construct($nim, $prodi)
+    private $studies = [
+        '113' => '36AD4C43-3391-4665-B43E-18AF50755248',
+        '115' => '771CDA74-824A-4208-8DD0-5746DD95D020',
+        '123' => 'E18F7F44-DF9A-4F0E-9393-724A2D350717',
+        '125' => '55DFA1F3-C11E-447C-8A6D-B8A4343C8746',
+        '133' => '4C991E25-08AD-4E8A-B995-763B9247BAC8',
+        '135' => '93DFDCD6-CC63-4FF2-BC40-EF049BD9C35A',
+    ];
+
+    public function __construct($nim)
     {
         $this->http = new Client();
-
         $this->nim = $nim;
-        $this->prodi = $prodi;
+        $this->prodi = $this->studies[substr($this->nim, 2, 3)];
     }
 
     public function getName()

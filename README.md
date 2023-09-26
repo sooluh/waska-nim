@@ -26,12 +26,12 @@ composer require wastukancana/nim
 ```php
 <?php
 
-use Wastukancana\NIM;
+use Wastukancana\Nim;
 
 require __DIR__ . '/vendor/autoload.php';
 
 try {
-    $nim = new NIM('211351143');
+    $nim = new Nim('211351143');
 
     var_dump($nim->dump());
 } catch (\Exception $e) {

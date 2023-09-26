@@ -1,11 +1,29 @@
 <?php
 
 use Wastukancana\Nim;
+use Wastukancana\Student;
 use PHPUnit\Framework\TestCase;
 
-final class NimTest extends TestCase
+final class NimParserTest extends TestCase
 {
     const NIM_TEST = '211351143';
+
+    public function testCanDump()
+    {
+        $parser = new Nim(self::NIM_TEST);
+        $dump = $parser->dump();
+
+        $student = new Student;
+        $student->nim = self::NIM_TEST;
+        $student->name = 'SULUH SULISTIAWAN';
+        $student->admissionYear = 2021;
+        $student->study = 'Teknik Informatika';
+        $student->educationLevel = 'S1';
+        $student->firstSemester = 1;
+        $student->sequenceNumber = 143;
+
+        $this->assertEquals($student, $dump);
+    }
 
     public function testCanGetNim()
     {
@@ -82,32 +100,24 @@ final class NimTest extends TestCase
     public function testNimWithInvalidLengthThrowsException()
     {
         $this->expectException(\Exception::class);
-
-        $parser = new Nim('1');
-        $parser->dump();
+        new Nim('1');
     }
 
     public function testNimWithNonNumericCharactersThrowsException()
     {
         $this->expectException(\Exception::class);
-
-        $parser = new Nim('2113511a3');
-        $parser->dump();
+        new Nim('2113511a3');
     }
 
     public function testInvalidAdmissionYearThrowsException()
     {
         $this->expectException(\Exception::class);
-
-        $parser = new Nim('991351143');
-        $parser->dump();
+        new Nim('991351143');
     }
 
     public function testNonExistentStudyThrowsException()
     {
         $this->expectException(\Exception::class);
-
-        $parser = new Nim('210001143');
-        $parser->dump();
+        new Nim('210001143');
     }
 }

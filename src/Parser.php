@@ -43,17 +43,17 @@ class Parser
         return $this->nim;
     }
 
-    protected function getAdmissionYearCode()
+    public function getAdmissionYearCode()
     {
         return substr($this->nim, 0, 2);
     }
 
-    protected function getStudyCode()
+    public function getStudyCode()
     {
         return substr($this->nim, 2, 3);
     }
 
-    protected function getEducationLevelCode()
+    public function getEducationLevelCode()
     {
         return substr($this->nim, 2, 3);
     }

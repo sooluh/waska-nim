@@ -39,6 +39,16 @@ class Nim extends Parser
         return $this->pddikti->getName();
     }
 
+    public function getGender()
+    {
+        return $this->pddikti->getGender();
+    }
+
+    public function getIsGraduated()
+    {
+        return $this->pddikti->getIsGraduated();
+    }
+
     public function isValidAdmissionYear()
     {
         $now = date('y');
@@ -74,6 +84,8 @@ class Nim extends Parser
         $student = new Student;
         $student->nim = $this->getNIM();
         $student->name = $this->pddikti->getName();
+        $student->gender = $this->pddikti->getGender();
+        $student->isGraduated = $this->pddikti->getIsGraduated();
         $student->admissionYear = $this->getAdmissionYear();
         $student->study = $this->getStudy();
         $student->educationLevel = $this->getEducationLevel();

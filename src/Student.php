@@ -9,6 +9,12 @@ class Student
     /** @var string|null */
     public string $name;
 
+    /** @var string|null */
+    public string $gender;
+
+    /** @var bool|null */
+    public bool $isGraduated;
+
     public int $admissionYear;
     public string $study;
     public string $educationLevel;

@@ -11,7 +11,10 @@ class PDDikti
 
     private string $nim;
     private string $prodi;
-    private string $id;
+    private string|null $id = null;
+    private string|null $name = null;
+    private string|null $gender = null;
+    private bool|null $isGraduated = null;
     // STT Wastukancana PT ID
     private string $pt = '2CE2EA61-3574-43CA-81D5-E8EF77B6DDF7';
 
@@ -31,8 +34,21 @@ class PDDikti
         $this->prodi = $this->studies[substr($this->nim, 2, 3)];
     }
 
-    public function getName()
+    private function parseResponse(\Psr\Http\Message\ResponseInterface $response)
     {
+        $body = $response->getBody();
+        $content = $body->getContents();
+        $data = json_decode($content);
+
+        return $data;
+    }
+
+    private function prepareList()
+    {
+        if ($this->id) {
+            return;
+        }
+
         $response = $this->http->post(base64_decode($this->baseURL) . '/search_mhs', [
             'json' => [
                 'nama' => '',
@@ -44,14 +60,46 @@ class PDDikti
                 'Content-Type' => 'application/json',
             ],
         ]);
-
-        $body = $response->getBody();
-        $content = $body->getContents();
-        $data = json_decode($content);
+        $data = $this->parseResponse($response);
 
         $this->id = $data->mahasiswa[0]->id ?? null;
-        $name = $data->mahasiswa[0]->nama ?? null;
+        $this->name = $data->mahasiswa[0]->nama ?? null;
+    }
 
-        return $name;
+    private function prepareDetail()
+    {
+        $this->prepareList();
+
+        if ($this->gender) {
+            return;
+        }
+
+        $response = $this->http->get(base64_decode($this->baseURL) . '/detail_mhs/' . $this->id);
+        $data = $this->parseResponse($response);
+        $data = $data->dataumum;
+
+        $this->gender = $data->jk === 'L' ? 'M' : 'F';
+        $this->isGraduated = !empty($data->no_seri_ijazah);
+    }
+
+    public function getName()
+    {
+        $this->prepareList();
+
+        return $this->name;
+    }
+
+    public function getGender()
+    {
+        $this->prepareDetail();
+
+        return $this->gender;
+    }
+
+    public function getIsGraduated()
+    {
+        $this->prepareDetail();
+
+        return $this->isGraduated;
     }
 }

@@ -8,14 +8,35 @@ final class NimParserTest extends TestCase
 {
     const NIM_TEST = '211351143';
 
+    private Nim $nim;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->nim = new Nim(self::NIM_TEST);
+    }
+
+    public function testIsValidAdmissionYear()
+    {
+        $valid = $this->nim->isValidAdmissionYear();
+        $this->assertTrue($valid);
+    }
+
+    public function testIsValidStudy()
+    {
+        $valid = $this->nim->isValidStudy();
+        $this->assertTrue($valid);
+    }
+
     public function testCanDump()
     {
-        $parser = new Nim(self::NIM_TEST);
-        $dump = $parser->dump();
+        $dump = $this->nim->dump();
 
         $student = new Student;
         $student->nim = self::NIM_TEST;
         $student->name = 'SULUH SULISTIAWAN';
+        $student->gender = 'M';
+        $student->isGraduated = false;
         $student->admissionYear = 2021;
         $student->study = 'Teknik Informatika';
         $student->educationLevel = 'S1';
@@ -27,73 +48,55 @@ final class NimParserTest extends TestCase
 
     public function testCanGetNim()
     {
-        $parser = new Nim(self::NIM_TEST);
-        $nim = $parser->getNIM();
-
+        $nim = $this->nim->getNIM();
         $this->assertEquals(self::NIM_TEST, $nim);
     }
 
     public function testCanGetName()
     {
-        $parser = new Nim(self::NIM_TEST);
-        $name = $parser->getName();
-
+        $name = $this->nim->getName();
         $this->assertEquals('SULUH SULISTIAWAN', $name);
+    }
+
+    public function testCanGetGender()
+    {
+        $gender = $this->nim->getGender();
+        $this->assertEquals('M', $gender);
+    }
+
+    public function testCanGetIsGraduated()
+    {
+        $isGraduated = $this->nim->getIsGraduated();
+        $this->assertEquals(false, $isGraduated);
     }
 
     public function testCanGetFirstSemester()
     {
-        $parser = new Nim(self::NIM_TEST);
-        $semester = $parser->getFirstSemester();
-
+        $semester = $this->nim->getFirstSemester();
         $this->assertEquals(1, $semester);
     }
 
     public function testCanGetSequenceNumber()
     {
-        $parser = new Nim(self::NIM_TEST);
-        $sequence = $parser->getSequenceNumber();
-
+        $sequence = $this->nim->getSequenceNumber();
         $this->assertEquals(143, $sequence);
-    }
-
-    public function testIsValidAdmissionYear()
-    {
-        $parser = new Nim(self::NIM_TEST);
-        $valid = $parser->isValidAdmissionYear();
-
-        $this->assertTrue($valid);
     }
 
     public function testCanGetAdmissionYear()
     {
-        $parser = new Nim(self::NIM_TEST);
-        $year = $parser->getAdmissionYear();
-
+        $year = $this->nim->getAdmissionYear();
         $this->assertEquals(2021, $year);
-    }
-
-    public function testIsValidStudy()
-    {
-        $parser = new Nim(self::NIM_TEST);
-        $valid = $parser->isValidStudy();
-
-        $this->assertTrue($valid);
     }
 
     public function testCanGetStudy()
     {
-        $parser = new Nim(self::NIM_TEST);
-        $study = $parser->getStudy();
-
+        $study = $this->nim->getStudy();
         $this->assertEquals('Teknik Informatika', $study);
     }
 
     public function testCanGetEducationLevel()
     {
-        $parser = new Nim(self::NIM_TEST);
-        $level = $parser->getEducationLevel();
-
+        $level = $this->nim->getEducationLevel();
         $this->assertEquals('S1', $level);
     }
 

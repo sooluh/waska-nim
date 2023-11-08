@@ -61,12 +61,12 @@ class Nim extends Parser
 
     public function getStudy()
     {
-        return $this->studies[$this->getEducationLevelCode()]['name'] ?? null;
+        return $this->studies[$this->getStudyCode()]['name'];
     }
 
     public function getEducationLevel()
     {
-        return $this->studies[$this->getEducationLevelCode()]['level'] ?? null;
+        return $this->studies[$this->getStudyCode()]['level'];
     }
 
     public function dump(): Student

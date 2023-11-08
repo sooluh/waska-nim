@@ -11,6 +11,7 @@ class PDDikti
 
     private string $nim;
     private string $prodi;
+    private string $id;
     // STT Wastukancana PT ID
     private string $pt = '2CE2EA61-3574-43CA-81D5-E8EF77B6DDF7';
 
@@ -48,6 +49,9 @@ class PDDikti
         $content = $body->getContents();
         $data = json_decode($content);
 
-        return $data->mahasiswa[0]->nama ?? null;
+        $this->id = $data->mahasiswa[0]->id ?? null;
+        $name = $data->mahasiswa[0]->nama ?? null;
+
+        return $name;
     }
 }

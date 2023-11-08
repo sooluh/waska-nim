@@ -53,11 +53,6 @@ class Parser
         return substr($this->nim, 2, 3);
     }
 
-    public function getEducationLevelCode()
-    {
-        return substr($this->nim, 2, 3);
-    }
-
     public function getFirstSemester()
     {
         return intval(substr($this->nim, 5, 1));

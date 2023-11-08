@@ -55,6 +55,6 @@ This project is licensed under [MIT License](./LICENSE).
 [unstable-version-src]: http://poser.pugx.org/wastukancana/nim/v/unstable
 [unstable-version-href]: https://packagist.org/packages/wastukancana/nim
 [codecov-src]: https://img.shields.io/codecov/c/gh/sooluh/waska-nim/main?style=flat
-[codecov-href]: https://codecov.io/gh/sooluh/bloks-parser
+[codecov-href]: https://codecov.io/gh/sooluh/waska-nim
 [license-src]: http://poser.pugx.org/wastukancana/nim/license
 [license-href]: https://packagist.org/packages/wastukancana/nim

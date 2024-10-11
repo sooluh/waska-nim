@@ -5,7 +5,7 @@ use Wastukancana\Nim;
 require __DIR__ . '/vendor/autoload.php';
 
 try {
-    $nim = new Nim('211351143');
+    $nim = new Nim('231331011');
 
     var_dump($nim->dump());
 } catch (\Exception $e) {

@@ -52,13 +52,13 @@ class PDDikti
             return;
         }
 
-        $response = $this->http->request('GET', "api/pencarian/mhs/$this->nim", [
+        $response = $this->http->request('GET', "api/pencarian/all/WASTUKANCANA%20$this->nim", [
             'headers' => $this->headers,
         ]);
         $data = $this->parseResponse($response);
 
-        $this->id = $data[0]->id ?? null;
-        $this->name = $data[0]->nama ?? null;
+        $this->id = $data->mahasiswa[0]->id ?? null;
+        $this->name = $data->mahasiswa[0]->nama ?? null;
     }
 
     private function prepareDetail()

@@ -1,4 +1,4 @@
-<a href="https://s.id/standwithpalestine"><img alt="I stand with Palestine" src="https://github.com/Safouene1/support-palestine-banner/blob/master/banner-project.svg" width="100%" /></a>
+<a href="https://s.id/standwithpalestine"><img alt="I stand with Palestine" src="https://cdn.jsdelivr.net/gh/safouene1/support-palestine-banner@master/banner-project.svg" width="100%" /></a>
 
 # Waska NIM
 
@@ -48,13 +48,13 @@ This project is licensed under [MIT License](./LICENSE).
 
 <!-- Badges -->
 
-[packagist-version-src]: http://poser.pugx.org/wastukancana/nim/version
+[packagist-version-src]: https://poser.pugx.org/wastukancana/nim/version
 [packagist-version-href]: https://packagist.org/packages/wastukancana/nim
-[download-src]: http://poser.pugx.org/wastukancana/nim/downloads
+[download-src]: https://poser.pugx.org/wastukancana/nim/downloads
 [download-href]: https://packagist.org/packages/wastukancana/nim
-[unstable-version-src]: http://poser.pugx.org/wastukancana/nim/v/unstable
+[unstable-version-src]: https://poser.pugx.org/wastukancana/nim/v/unstable
 [unstable-version-href]: https://packagist.org/packages/wastukancana/nim
 [codecov-src]: https://img.shields.io/codecov/c/gh/sooluh/waska-nim/main?style=flat
 [codecov-href]: https://codecov.io/gh/sooluh/waska-nim
-[license-src]: http://poser.pugx.org/wastukancana/nim/license
+[license-src]: https://poser.pugx.org/wastukancana/nim/license
 [license-href]: https://packagist.org/packages/wastukancana/nim

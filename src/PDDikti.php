@@ -9,6 +9,7 @@ class PDDikti
     private $headers = [
         'User-Agent' => 'curl/7.81.0',
         'Accept' => 'application/json',
+        'X-Api-Key' => '3ed297db-db1c-4266-8bf4-a89f21c01317',
     ];
     private Client $http;
 

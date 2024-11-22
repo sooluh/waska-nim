@@ -6,59 +6,32 @@ class Parser
 {
     protected string $nim;
 
-    protected $studies = [
-        '113' => [
-            'level' => 'S1',
-            'name' => 'Teknik Tekstil',
-        ],
-        '115' => [
-            'level' => 'S1',
-            'name' => 'Teknik Industri',
-        ],
-        '123' => [
-            'level' => 'D3',
-            'name' => 'Teknik Mesin',
-        ],
-        '125' => [
-            'level' => 'S1',
-            'name' => 'Teknik Mesin',
-        ],
-        '133' => [
-            'level' => 'D3',
-            'name' => 'Manajemen Industri',
-        ],
-        '135' => [
-            'level' => 'S1',
-            'name' => 'Teknik Informatika',
-        ],
-    ];
-
     public function __construct($nim)
     {
         $this->nim = trim($nim);
     }
 
-    public function getNIM()
+    public function getNIM(): string
     {
         return $this->nim;
     }
 
-    public function getAdmissionYearCode()
+    public function getAdmissionYearCode(): string
     {
         return substr($this->nim, 0, 2);
     }
 
-    public function getStudyCode()
+    public function getStudyCode(): string
     {
         return substr($this->nim, 2, 3);
     }
 
-    public function getFirstSemester()
+    public function getFirstSemester(): int
     {
         return intval(substr($this->nim, 5, 1));
     }
 
-    public function getSequenceNumber()
+    public function getSequenceNumber(): int
     {
         return intval(substr($this->nim, 6, 3));
     }

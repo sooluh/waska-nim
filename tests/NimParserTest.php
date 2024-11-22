@@ -7,25 +7,30 @@ use PHPUnit\Framework\TestCase;
 final class NimParserTest extends TestCase
 {
     const NIM_TEST = '211351143';
+    const EXPECTED_NAME = 'SULUH SULISTIAWAN';
+    const EXPECTED_GENDER = 'M';
+    const EXPECTED_GRADUATION = false;
+    const EXPECTED_YEAR = 2021;
+    const EXPECTED_STUDY = 'Teknik Informatika';
+    const EXPECTED_LEVEL = 'S1';
+    const EXPECTED_SEMESTER = 1;
+    const EXPECTED_SEQUENCE = 143;
 
     private Nim $nim;
 
-    public function __construct()
+    protected function setUp(): void
     {
-        parent::__construct();
         $this->nim = new Nim(self::NIM_TEST);
     }
 
     public function testIsValidAdmissionYear()
     {
-        $valid = $this->nim->isValidAdmissionYear();
-        $this->assertTrue($valid);
+        $this->assertTrue($this->nim->isValidAdmissionYear());
     }
 
     public function testIsValidStudy()
     {
-        $valid = $this->nim->isValidStudy();
-        $this->assertTrue($valid);
+        $this->assertTrue($this->nim->isValidStudy());
     }
 
     public function testCanDump()
@@ -34,93 +39,84 @@ final class NimParserTest extends TestCase
 
         $student = new Student;
         $student->nim = self::NIM_TEST;
-        $student->name = 'SULUH SULISTIAWAN';
-        $student->gender = 'M';
-        $student->isGraduated = false;
-        $student->admissionYear = 2021;
-        $student->study = 'Teknik Informatika';
-        $student->educationLevel = 'S1';
-        $student->firstSemester = 1;
-        $student->sequenceNumber = 143;
+        $student->name = self::EXPECTED_NAME;
+        $student->gender = self::EXPECTED_GENDER;
+        $student->isGraduated = self::EXPECTED_GRADUATION;
+        $student->admissionYear = self::EXPECTED_YEAR;
+        $student->study = self::EXPECTED_STUDY;
+        $student->educationLevel = self::EXPECTED_LEVEL;
+        $student->firstSemester = self::EXPECTED_SEMESTER;
+        $student->sequenceNumber = self::EXPECTED_SEQUENCE;
 
         $this->assertEquals($student, $dump);
     }
 
     public function testCanGetNim()
     {
-        $nim = $this->nim->getNIM();
-        $this->assertEquals(self::NIM_TEST, $nim);
+        $this->assertEquals(self::NIM_TEST, $this->nim->getNIM());
     }
 
     public function testCanGetName()
     {
-        $name = $this->nim->getName();
-        $this->assertEquals('SULUH SULISTIAWAN', $name);
+        $this->assertEquals(self::EXPECTED_NAME, $this->nim->getName());
     }
 
     public function testCanGetGender()
     {
-        $gender = $this->nim->getGender();
-        $this->assertEquals('M', $gender);
+        $this->assertEquals(self::EXPECTED_GENDER, $this->nim->getGender());
     }
 
     public function testCanGetIsGraduated()
     {
-        $isGraduated = $this->nim->getIsGraduated();
-        $this->assertEquals(false, $isGraduated);
+        $this->assertEquals(self::EXPECTED_GRADUATION, $this->nim->getIsGraduated());
     }
 
     public function testCanGetFirstSemester()
     {
-        $semester = $this->nim->getFirstSemester();
-        $this->assertEquals(1, $semester);
+        $this->assertEquals(self::EXPECTED_SEMESTER, $this->nim->getFirstSemester());
     }
 
     public function testCanGetSequenceNumber()
     {
-        $sequence = $this->nim->getSequenceNumber();
-        $this->assertEquals(143, $sequence);
+        $this->assertEquals(self::EXPECTED_SEQUENCE, $this->nim->getSequenceNumber());
     }
 
     public function testCanGetAdmissionYear()
     {
-        $year = $this->nim->getAdmissionYear();
-        $this->assertEquals(2021, $year);
+        $this->assertEquals(self::EXPECTED_YEAR, $this->nim->getAdmissionYear());
     }
 
     public function testCanGetStudy()
     {
-        $study = $this->nim->getStudy();
-        $this->assertEquals('Teknik Informatika', $study);
+        $this->assertEquals(self::EXPECTED_STUDY, $this->nim->getStudy());
     }
 
     public function testCanGetEducationLevel()
     {
-        $level = $this->nim->getEducationLevel();
-        $this->assertEquals('S1', $level);
+        $this->assertEquals(self::EXPECTED_LEVEL, $this->nim->getEducationLevel());
     }
 
     public function testNimWithInvalidLengthThrowsException()
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(\InvalidArgumentException::class);
         new Nim('1');
     }
 
     public function testNimWithNonNumericCharactersThrowsException()
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(\InvalidArgumentException::class);
         new Nim('2113511a3');
     }
 
     public function testInvalidAdmissionYearThrowsException()
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(\InvalidArgumentException::class);
         new Nim('991351143');
     }
 
     public function testNonExistentStudyThrowsException()
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(\InvalidArgumentException::class);
         new Nim('210001143');
     }
 }

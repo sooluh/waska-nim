@@ -26,7 +26,8 @@
             "@php vendor/bin/phpcbf --standard=PSR2 --ignore=tests/*,vendor/* ."
         ],
         "tests": [
-            "@php vendor/bin/phpunit --testdox tests"
+            "@php vendor/bin/phpunit --testdox tests",
+            "@php vendor/bin/phpunit --coverage-html reports"
         ]
     },
     "autoload": {

@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.6/phpunit.xsd"
-         bootstrap="vendor/autoload.php"
-         executionOrder="depends,defects"
-         beStrictAboutOutputDuringTests="true"
-         beStrictAboutTodoAnnotatedTests="true"
-         cacheResultFile=".phpunit.cache/test-results"
-         colors="true"
-         failOnRisky="true"
-         failOnWarning="true"
-         verbose="true">
+    xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.6/phpunit.xsd"
+    bootstrap="vendor/autoload.php"
+    executionOrder="depends,defects"
+    beStrictAboutOutputDuringTests="true"
+    beStrictAboutTodoAnnotatedTests="true"
+    cacheResultFile=".phpunit.cache/test-results"
+    colors="true"
+    failOnRisky="true"
+    failOnWarning="true"
+    verbose="true">
     <testsuites>
         <testsuite name="default">
             <directory>tests</directory>
@@ -17,10 +17,14 @@
     </testsuites>
 
     <coverage cacheDirectory=".phpunit.cache/code-coverage"
-              processUncoveredFiles="true"
-              ignoreDeprecatedCodeUnits="true">
+        processUncoveredFiles="true"
+        ignoreDeprecatedCodeUnits="true">
         <include>
             <directory suffix=".php">src</directory>
         </include>
+
+        <report>
+            <html outputDirectory="reports" />
+        </report>
     </coverage>
 </phpunit>

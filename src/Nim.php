@@ -4,31 +4,33 @@ namespace Wastukancana;
 
 class Nim extends Parser
 {
+    private const MIN_YEAR = 2001;
     private PDDikti $pddikti;
 
     public function __construct($nim)
     {
         parent::__construct($nim);
+
         $this->isValid();
         $this->pddikti = new PDDikti($this->nim);
     }
 
-    private function isValid()
+    private function isValid(): bool
     {
         if (strlen($this->nim) !== 9) {
-            throw new \Exception('NIM must be 9 characters');
+            throw new \InvalidArgumentException('NIM must be 9 characters');
         }
 
         if (!ctype_digit($this->nim)) {
-            throw new \Exception('NIM must contain only numbers');
+            throw new \InvalidArgumentException('NIM must contain only numbers');
         }
 
         if (!$this->isValidAdmissionYear()) {
-            throw new \Exception('Admission year is invalid');
+            throw new \InvalidArgumentException('Admission year is invalid');
         }
 
         if (!$this->isValidStudy()) {
-            throw new \Exception('Study cannot be found');
+            throw new \InvalidArgumentException('Study cannot be found');
         }
 
         return true;
@@ -49,43 +51,41 @@ class Nim extends Parser
         return $this->pddikti->getIsGraduated();
     }
 
-    public function isValidAdmissionYear()
+    public function isValidAdmissionYear(): bool
     {
-        $now = date('y');
-        $year = intval($this->getAdmissionYearCode());
-
-        // start from 2001
-        return $year >= 1 && $year <= $now;
+        $currentYear = intval(date('Y'));
+        $admissionYear = $this->getAdmissionYear();
+        return $admissionYear >= self::MIN_YEAR && $admissionYear <= $currentYear;
     }
 
-    public function getAdmissionYear()
+    public function getAdmissionYear(): int
     {
         $year = $this->getAdmissionYearCode();
         return intval('20' . $year);
     }
 
-    public function isValidStudy()
+    public function isValidStudy(): bool
     {
-        return in_array($this->getStudyCode(), array_keys($this->studies));
+        return array_key_exists($this->getStudyCode(), StudyConfig::STUDIES);
     }
 
-    public function getStudy()
+    public function getStudy(): ?string
     {
-        return $this->studies[$this->getStudyCode()]['name'];
+        return StudyConfig::STUDIES[$this->getStudyCode()]['name'] ?? null;
     }
 
-    public function getEducationLevel()
+    public function getEducationLevel(): ?string
     {
-        return $this->studies[$this->getStudyCode()]['level'];
+        return StudyConfig::STUDIES[$this->getStudyCode()]['level'] ?? null;
     }
 
     public function dump(): Student
     {
-        $student = new Student;
+        $student = new Student();
         $student->nim = $this->getNIM();
-        $student->name = $this->pddikti->getName();
-        $student->gender = $this->pddikti->getGender();
-        $student->isGraduated = $this->pddikti->getIsGraduated();
+        $student->name = $this->getName();
+        $student->gender = $this->getGender();
+        $student->isGraduated = $this->getIsGraduated();
         $student->admissionYear = $this->getAdmissionYear();
         $student->study = $this->getStudy();
         $student->educationLevel = $this->getEducationLevel();

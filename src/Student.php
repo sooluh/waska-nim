@@ -5,15 +5,9 @@ namespace Wastukancana;
 class Student
 {
     public string $nim;
-
-    /** @var string|null */
-    public string $name;
-
-    /** @var string|null */
-    public string $gender;
-
-    /** @var bool|null */
-    public bool $isGraduated;
+    public ?string $name = null;
+    public ?string $gender = null;
+    public ?bool $isGraduated = null;
 
     public int $admissionYear;
     public string $study;

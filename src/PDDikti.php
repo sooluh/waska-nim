@@ -3,32 +3,24 @@
 namespace Wastukancana;
 
 use GuzzleHttp\Client;
+use Psr\Http\Message\ResponseInterface;
 
 class PDDikti
 {
-    private $headers = [
-        'User-Agent' => 'curl/7.81.0',
+    private Client $http;
+    private string $nim;
+
+    private array $headers = [
         'Accept' => 'application/json',
         'X-Api-Key' => '3ed297db-db1c-4266-8bf4-a89f21c01317',
     ];
-    private Client $http;
 
-    /** @var string */
-    private string $nim;
-
-    /** @var string|null */
     private ?string $id = null;
-
-    /** @var string|null */
     private ?string $name = null;
-
-    /** @var string|null */
     private ?string $gender = null;
-
-    /** @var bool|null */
     private ?bool $isGraduated = null;
 
-    public function __construct($nim)
+    public function __construct(string $nim)
     {
         $this->http = new Client([
             'base_uri' => 'https://pddikti.kemdikbud.go.id',
@@ -37,65 +29,82 @@ class PDDikti
         $this->nim = $nim;
     }
 
-    private function parseResponse(\Psr\Http\Message\ResponseInterface $response)
+    private function fetchData(string $endpoint): ?object
     {
-        $body = $response->getBody();
-        $content = $body->getContents();
-        $data = json_decode($content);
-
-        return $data;
+        try {
+            $response = $this->http->request('GET', $endpoint, ['headers' => $this->headers]);
+            return $this->parseResponse($response);
+        } catch (\Exception $e) {
+            return null;
+        }
     }
 
-    private function prepareList()
+    private function parseResponse(ResponseInterface $response): ?object
     {
-        if ($this->id) {
+        $content = $response->getBody()->getContents();
+        return json_decode($content);
+    }
+
+    private function prepareList(): void
+    {
+        if ($this->id !== null) {
             return;
         }
 
-        $response = $this->http->request('GET', "api/pencarian/all/WASTUKANCANA%20$this->nim", [
-            'headers' => $this->headers,
-        ]);
-        $data = $this->parseResponse($response);
+        $data = $this->fetchData("api/pencarian/all/$this->nim");
 
-        $this->id = $data->mahasiswa[0]->id ?? null;
-        $this->name = $data->mahasiswa[0]->nama ?? null;
+        if (!$data || empty($data->mahasiswa)) {
+            return;
+        }
+
+        $filtered = array_filter(
+            $data->mahasiswa,
+            fn($i) => isset($i->sinkatan_pt) && $i->sinkatan_pt === 'STT WASTUKANCANA'
+        );
+
+        $selected = !empty($filtered) ? reset($filtered) : null;
+
+        $this->id = $selected->id ?? null;
+        $this->name = $selected->nama ?? null;
     }
 
-    private function prepareDetail()
+    private function prepareDetail(): void
     {
+        if ($this->gender !== null) {
+            return;
+        }
+
         $this->prepareList();
 
-        if ($this->gender) {
+        if (!$this->id) {
             return;
         }
 
-        $response = $this->http->request('GET', "api/detail/mhs/$this->id", [
-            'headers' => $this->headers,
-        ]);
-        $data = $this->parseResponse($response);
+        $data = $this->fetchData("api/detail/mhs/$this->id");
+
+        if (!$data) {
+            return;
+        }
 
         $this->gender = $data->jenis_kelamin === 'L' ? 'M' : 'F';
-        $this->isGraduated = stripos($data->status_saat_ini, 'lulus') !== false;
+        $this->isGraduated = stripos($data->status_saat_ini ?? '', 'lulus') !== false;
     }
 
-    public function getName()
+    public function getName(): ?string
     {
         $this->prepareList();
-
         return $this->name;
     }
 
-    public function getGender()
+    public function getGender(): ?string
     {
         $this->prepareDetail();
-
         return $this->gender;
     }
 
-    public function getIsGraduated()
+    public function getIsGraduated(): ?bool
     {
         $this->prepareDetail();
-
         return $this->isGraduated;
     }
 }

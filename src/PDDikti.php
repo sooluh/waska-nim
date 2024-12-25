@@ -10,11 +10,6 @@ class PDDikti
     private Client $http;
     private string $nim;
 
-    private array $headers = [
-        'Accept' => 'application/json',
-        'X-Api-Key' => '3ed297db-db1c-4266-8bf4-a89f21c01317',
-    ];
-
     private ?string $id = null;
     private ?string $name = null;
     private ?string $gender = null;
@@ -23,7 +18,7 @@ class PDDikti
     public function __construct(string $nim)
     {
         $this->http = new Client([
-            'base_uri' => 'https://pddikti.kemdikbud.go.id',
+            'base_uri' => 'https://api-pddikti.kemdiktisaintek.go.id',
             'verify' => false,
         ]);
         $this->nim = $nim;
@@ -31,8 +26,28 @@ class PDDikti
 
     private function fetchData(string $endpoint): ?object
     {
+        $ip = long2ip(rand(0, 4294967295));
+
         try {
-            $response = $this->http->request('GET', $endpoint, ['headers' => $this->headers]);
+            $this->http->request('OPTIONS', $endpoint, [
+                'headers' => [
+                    'X-User-Ip' => $ip,
+                    'Origin' => 'https://pddikti.kemdiktisaintek.go.id',
+                    'Access-Control-Request-Method' => 'GET',
+                    'Access-Control-Request-Headers' => 'X-User-Ip',
+                ],
+            ]);
+        } catch (\Exception $e) {
+            return null;
+        }
+
+        try {
+            $response = $this->http->request('GET', $endpoint, [
+                'headers' => [
+                    'X-User-Ip' => $ip,
+                    'Origin' => 'https://pddikti.kemdiktisaintek.go.id',
+                ],
+            ]);
             return $this->parseResponse($response);
         } catch (\Exception $e) {
             return null;
@@ -51,7 +66,7 @@ class PDDikti
             return;
         }
 
-        $data = $this->fetchData("api/pencarian/all/$this->nim");
+        $data = $this->fetchData("pencarian/all/$this->nim");
 
         if (!$data || empty($data->mahasiswa)) {
             return;
@@ -80,7 +95,7 @@ class PDDikti
             return;
         }
 
-        $data = $this->fetchData("api/detail/mhs/$this->id");
+        $data = $this->fetchData("detail/mhs/$this->id");
 
         if (!$data) {
             return;
